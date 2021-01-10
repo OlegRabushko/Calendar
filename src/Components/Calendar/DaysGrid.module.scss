@@ -1,0 +1,18 @@
+.cellsContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  .weeksName {
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Redressed', cursive;
+    margin: 5px 0;
+  }
+}
+.cells {
+  height: 100%;
+  border: 1px solid rgb(82, 82, 82);
+  margin: 0.7%;
+  &:hover {
+    background-color: rgb(243, 216, 250);
+  }
+}

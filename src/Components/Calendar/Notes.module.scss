@@ -1,0 +1,67 @@
+@mixin Btns {
+  width: 80px;
+  height: 30px;
+  outline: none;
+  background-color: rgb(241, 241, 241);
+  border: 0.1px solid rgb(255, 153, 255);
+  border-radius: 5px;
+  font-family: 'Redressed', cursive;
+  font-size: 18px;
+  &:hover {
+    background-color: rgb(243, 216, 250);
+  }
+  &:active {
+    background-color: rgb(237, 194, 248);
+  }
+}
+
+.noteContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  .noteInner {
+    width: 60%;
+    border-radius: 20px;
+    margin-top: 10%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 3% 5%;
+    .timeInput {
+      width: 30%;
+      border-bottom: 2px solid rgb(242, 183, 250);
+      font-family: 'Redressed', cursive;
+    }
+    .textInput {
+      width: 100%;
+      border-bottom: 2px solid rgb(242, 183, 250);
+      font-size: 20px;
+    }
+    .btnsNew {
+      display: inline-flex;
+      text-align: right;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      margin-top: 5%;
+      .btnDelete {
+        @include Btns;
+        margin-right: 10px;
+      }
+      .btnNew {
+        @include Btns;
+      }
+    }
+    .btnOk {
+      @include Btns;
+      transform: translateX(-50%);
+      margin-top: 10%;
+      margin-left: 50%;
+      height: 40px;
+    }
+  }
+}

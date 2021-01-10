@@ -1,0 +1,12 @@
+.cellContainer {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 20px;
+  font-family: 'Redressed', cursive;
+  .noteLinkContainer {
+    cursor: pointer;
+    .noteLink {
+      margin: 5% 0 20% 0;
+    }
+  }
+}

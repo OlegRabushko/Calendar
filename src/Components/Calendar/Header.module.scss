@@ -1,0 +1,67 @@
+@mixin buttons {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 30px;
+  color: #fff;
+  font-family: 'Redressed', cursive;
+  &:hover {
+    background-color: rgb(192, 192, 192);
+  }
+  &:active {
+    background-color: rgb(198, 160, 202);
+  }
+}
+.body {
+  margin: 0 2%;
+}
+.container {
+  color: #fff;
+  text-align: center;
+  background-color: rgb(66, 66, 66);
+  font-family: 'Redressed', cursive;
+  .yearContainer {
+    padding: 10px 0 0 0;
+    .yearPrevBtn {
+      @include buttons;
+      &:after {
+        content: '\003C';
+      }
+    }
+    .yearSecBtn {
+      @include buttons;
+      &:after {
+        content: '\003E';
+      }
+    }
+    .yearText {
+      margin: 0 20px;
+      font-size: 40px;
+    }
+  }
+  .monthContainer {
+    .monthPrevBtn {
+      @include buttons;
+      width: 40px;
+      height: 40px;
+      &:after {
+        content: '\003C';
+      }
+    }
+    .monthSecBtn {
+      @include buttons;
+      width: 40px;
+      height: 40px;
+      &:after {
+        content: '\003E';
+      }
+    }
+    .monthText {
+      margin: 0 10px;
+      font-size: 25px;
+    }
+  }
+}
