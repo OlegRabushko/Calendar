@@ -1,0 +1,75 @@
+@mixin Btns {
+  width: 100px;
+  height: 40px;
+  outline: none;
+  background-color: rgb(241, 241, 241);
+  border: 0.1px solid rgb(255, 153, 255);
+  border-radius: 5px;
+  font-family: 'Redressed', cursive;
+  font-size: 25px;
+  &:hover {
+    background-color: rgb(243, 216, 250);
+  }
+  &:active {
+    background-color: rgb(237, 194, 248);
+  }
+}
+
+.container {
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  font-size: 20px;
+  padding: 30px 15%;
+  font-family: 'Redressed', cursive;
+  .headline {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+  .inputsLine {
+    display: flex;
+    justify-content: space-between;
+    .wordFromAndTo {
+      font-size: 35px;
+      margin-right: -5%;
+    }
+    .inputs {
+      min-width: 150px;
+      width: 35%;
+      border-bottom: 2px solid rgb(242, 183, 250);
+      font-family: 'Redressed', cursive;
+      font-size: 110%;
+    }
+  }
+  .btnShow {
+    @include Btns;
+    margin: 20px 0 20px 20px;
+    width: 80px;
+    height: 35px;
+    font-size: 24px;
+  }
+  .btnClose {
+    @include Btns;
+    margin-top: 30px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .out {
+    .notesAbsent {
+      text-align: center;
+      font-size: 40px;
+      text-shadow: rgb(200, 65, 200) 0px 0px 5px;
+    }
+    .notesText {
+      font-size: 25px;
+      margin-left: 20px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid rgb(255, 153, 255);
+    }
+  }
+}
