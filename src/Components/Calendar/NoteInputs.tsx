@@ -41,17 +41,19 @@ export const NoteInputs: FC<NotesInputProps> = ({
         type="time"
         className={style.timeInput}
         list="timeList"
-        value={formatHour(hour ?? 0)}
+        value={hour ? formatHour(hour) : undefined}
         onChange={onChangeHour}
       ></input>
       <datalist id="timeList">{options}</datalist>
       <div>
-        <input
-          className={style.textInput}
-          type="text"
-          value={text}
-          onChange={onChangeText}
-        ></input>
+        {hour ? (
+          <input
+            className={style.textInput}
+            type="text"
+            value={text}
+            onChange={onChangeText}
+          ></input>
+        ) : undefined}
       </div>
     </div>
   );

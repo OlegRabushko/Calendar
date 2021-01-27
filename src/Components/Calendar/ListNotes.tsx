@@ -1,24 +1,17 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import style from './ListNotes.module.scss';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
+import { NotesState } from 'store/notes/types';
 
 export const ListNotes: FC = () => {
   const startDateInputRef = useRef<HTMLInputElement>(null);
   const endDateInputRef = useRef<HTMLInputElement>(null);
   const notes = useSelector((state: RootState) => state.notes);
   const [num, setNum] = useState(['']);
+  const [notesValue, setNotesValue] = useState<NotesState>([]);
 
-  useEffect(() => {
-    // // setFirstYear();
-    // setFirstMonth();
-    // setFirstDay();
-    // setEndDay();
-    // setEndMonth();
-    // setEndYear();
-    // setNotesValue();
-  });
   const startDateInput = () => {
     if (!startDateInputRef.current) return;
     const firstDate = startDateInputRef.current.value;
@@ -58,8 +51,8 @@ export const ListNotes: FC = () => {
     return endDateInput()?.slice(8, 10);
   };
 
-  const setNotesValue = () => {
-    const notesFilter = notes.filter((note) => {
+  let showBtn = () => {
+    const newNotesValue = notes.filter((note) => {
       return (
         note.day >= Number(setFirstDay()) &&
         note.day <= Number(setEndDay()) &&
@@ -69,14 +62,7 @@ export const ListNotes: FC = () => {
         note.year <= Number(setEndYear())
       );
     });
-    return notesFilter;
-  };
-
-  let showBtn = () => {
-    const notesArray = [];
-    const SetNotesValueSort = setNotesValue().sort(
-      (prev, next) => prev.day - next.day,
-    );
+    setNotesValue(newNotesValue);
     const replaceStartDate = Number(startDateInput()?.replace(/\D+/g, ''));
     const replaceEndDate = Number(endDateInput()?.replace(/\D+/g, ''));
     if (startDateInput() === '') {
@@ -86,7 +72,10 @@ export const ListNotes: FC = () => {
     } else if (replaceStartDate > replaceEndDate) {
       alert(`Start date can't be older then end date!`);
     }
-    console.log(setNotesValue());
+    const notesArray = [];
+    const SetNotesValueSort = newNotesValue.sort(
+      (prev, next) => prev.day - next.day,
+    );
     for (let i = 0; i < SetNotesValueSort.length; i++) {
       notesArray.push(
         `${SetNotesValueSort[i].year}.${
@@ -102,20 +91,6 @@ export const ListNotes: FC = () => {
       setNum(notesArray);
     }
   };
-
-  const printNotes = () => {
-    console.log(setNotesValue());
-
-    let print = !setNotesValue().length ? (
-      <div className={style.notesAbsent}>no notes!</div>
-    ) : (
-      num.map((el) => {
-        return <div className={style.notesText}>{el}</div>;
-      })
-    );
-    return print;
-  };
-  console.log('dsds');
 
   return (
     <>
@@ -144,7 +119,16 @@ export const ListNotes: FC = () => {
             Show
           </button>
         </div>
-        <div className={style.out}>{printNotes()}</div>
+        <div className={style.out} id="out"></div>
+        <div className={style.out}>
+          {!notesValue.length ? (
+            <div className={style.notesAbsent}>no notes!</div>
+          ) : (
+            num.map((el) => {
+              return <div className={style.notesText}>{el}</div>;
+            })
+          )}
+        </div>
         <NavLink to="">
           <button className={style.btnClose}>Close</button>
         </NavLink>
