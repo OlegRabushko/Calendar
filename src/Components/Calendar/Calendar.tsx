@@ -7,22 +7,7 @@ import style from './Header.module.scss';
 import { Route } from 'react-router-dom';
 import { Notes } from './Notes';
 import { setMonth, setYear } from 'store/dates/actions';
-
-interface CalendarProps {}
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import { ListNotes } from 'Components/Calendar/ListNotes';
 
 export interface CurrentDate {
   year: number;
@@ -30,7 +15,21 @@ export interface CurrentDate {
   day: number;
 }
 
-export const Calendar: FC<CalendarProps> = (props) => {
+export const Calendar: FC = (props) => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
   const dates = useSelector((store: RootState) => store.dates);
   const dispatch = useDispatch();
   const _setYear = (year: number) => dispatch(setYear(year));
@@ -48,7 +47,8 @@ export const Calendar: FC<CalendarProps> = (props) => {
       <div className={style.body}>
         <DaysGrid dates={dates} currentDate={dates.currentDate} />
       </div>
-      <Route path="/notes/:year/:month/:day" component={Notes} />
+      <Route path="/notes/:year/:month/:day" render={() => <Notes />} />
+      <Route path="/noteslist" render={() => <ListNotes />} />
     </>
   );
 };

@@ -4,6 +4,8 @@ import {
   Note,
   NotesActionTypes,
   REMOVE_NOTE,
+  NOTE_COUNT,
+  NotesLength,
 } from './types';
 
 export const addNote = (note: Note): NotesActionTypes => ({
@@ -11,6 +13,10 @@ export const addNote = (note: Note): NotesActionTypes => ({
   payload: note,
 });
 
+export const checkNotesLength = (note: number):  NotesActionTypes => ({
+    type: NOTE_COUNT,
+    payload: note,
+});
 export const changeNote = (newNote: Note, oldNote: Note): NotesActionTypes => ({
   type: CHANGE_NOTE,
   payload: { newNote, oldNote },

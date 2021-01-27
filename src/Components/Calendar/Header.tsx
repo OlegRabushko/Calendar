@@ -2,6 +2,7 @@ import { FC } from 'react';
 import style from './Header.module.scss';
 import { DatesState } from 'store/dates/types';
 import { CurrentDate } from './Calendar';
+import { NavLink } from 'react-router-dom';
 
 interface DateProps {
   setMonth: (month: number) => void;
@@ -54,6 +55,9 @@ export const Header: FC<DateProps> = ({
           disabled={currentDate.month === 11}
         ></button>
       </div>
+      <NavLink to="/noteslist">
+        <button className={style.notesListBtn}>Notes List</button>
+      </NavLink>
     </div>
   );
 };

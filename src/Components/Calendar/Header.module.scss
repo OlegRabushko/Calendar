@@ -23,6 +23,7 @@
   text-align: center;
   background-color: rgb(66, 66, 66);
   font-family: 'Redressed', cursive;
+  width: 100%;
   .yearContainer {
     padding: 10px 0 0 0;
     .yearPrevBtn {
@@ -62,6 +63,22 @@
     .monthText {
       margin: 0 10px;
       font-size: 25px;
+    }
+  }
+  .notesListBtn {
+    width: 200px;
+    height: 30px;
+    margin: 10px 0;
+    outline: none;
+    border-radius: 15px;
+    &:hover {
+      background-color: rgb(243, 216, 250);
+    }
+    &:active {
+      background-color: rgb(198, 160, 202);
+    }
+    &:focus {
+      background-color: rgb(198, 160, 202);
     }
   }
 }

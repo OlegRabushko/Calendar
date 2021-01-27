@@ -8,7 +8,7 @@ import { addNote, removeNote, changeNote } from 'store/notes/actions';
 import { stringPropertiesToNumber } from 'utils/dates';
 import { Note } from 'store/notes/types';
 
-interface NotesData {
+export interface NotesData {
   year: string;
   month: string;
   day: string;
@@ -30,35 +30,38 @@ export const Notes: FC = (props) => {
     ),
   );
   const dispatch = useDispatch();
-  const addNoteHandler = () =>
+  const addNoteHandler = () => {
     dispatch(
       addNote({
         ...parsedParams,
         hour: null,
         text: '',
+        count: 0,
       }),
     );
+  };
 
   const removeNoteHandler = (index: number) => dispatch(removeNote(index));
-  const removeLastNoteHandler = () => removeNoteHandler(notes.length - 1);
+  const removeLastNoteHandler = () => {
+    removeNoteHandler(notes.length - 1);
+  };
   const changeNoteHandler = (newNote: Note, oldNote: Note) =>
     dispatch(changeNote(newNote, oldNote));
-
   return (
     <div className={style.noteContainer}>
       <div className={style.noteInner}>
         <div>
           <form>
-            {notes.map(({ year, month, day, hour, text }) => {
+            {notes.map(({ year, month, day, hour, text, count }) => {
               const excludedHours = notes.map((note) => note.hour);
               const onChange: NotesInputProps['onChange'] = (options) => {
                 changeNoteHandler(
-                  { year, month, day, hour, text, ...options },
-                  { year, month, day, hour, text },
+                  { year, month, day, hour, text, ...options, count },
+                  { year, month, day, hour, text, count },
                 );
               };
               return (
-                <div key={[year, month, day, hour].join()}>
+                <div key={[year, month, day, hour, count].join()}>
                   <NoteInputs
                     hour={hour}
                     text={text}

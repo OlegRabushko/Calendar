@@ -1,12 +1,37 @@
 .cellContainer {
   text-align: center;
   margin-top: 5px;
-  font-size: 20px;
+  font-size: 25px;
   font-family: 'Redressed', cursive;
   .noteLinkContainer {
     cursor: pointer;
-    .noteLink {
-      margin: 5% 0 20% 0;
+    font-size: 20px;
+    .notesLink {
+      color: #e9bbe5;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      .notesCircle {
+        margin: 5px 0 0 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(
+          25deg,
+          rgba(165, 60, 165, 1) 0%,
+          rgba(165, 60, 165, 0.7) 65%
+        );
+      }
+      .notesValue {
+        color: rgb(119, 119, 119);
+        margin-right: 5px;
+      }
+      .notesText {
+        color: #ce4edf;
+      }
     }
   }
 }

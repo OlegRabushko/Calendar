@@ -1,12 +1,33 @@
+
 import {
   ADD_NOTE,
   CHANGE_NOTE,
   NotesActionTypes,
   NotesState,
   REMOVE_NOTE,
+  NOTE_COUNT,
+  NotesLength
 } from './types';
 
 const initialState: NotesState = [];
+const initialNotesLengthState: NotesLength = {
+  count: 0
+};
+
+export const NotesLengthReducer = (
+  state: NotesLength =  initialNotesLengthState,
+  action: NotesActionTypes
+)=>{
+  switch(action.type){
+    case NOTE_COUNT:
+      return{
+        ...state, 
+      count: state.count + action.payload,
+    }
+    default:
+        return state;
+  }
+  }
 
 export const notesReducer = (
   state: NotesState = initialState,
@@ -33,7 +54,9 @@ export const notesReducer = (
         ...state.slice(0, action.payload),
         ...state.slice(action.payload + 1, state.length),
       ];
+      
     default:
       return state;
   }
 };
+

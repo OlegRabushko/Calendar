@@ -9,6 +9,8 @@ export interface NotesInputProps {
 }
 
 const availableHours = new Array(13).fill(null).map((_, index) => index + 8);
+console.log(availableHours);
+
 const formatHour = (hour: number) =>
   `${hour.toString().length === 1 ? `0${hour}` : hour}:00`;
 export const NoteInputs: FC<NotesInputProps> = ({
@@ -31,6 +33,7 @@ export const NoteInputs: FC<NotesInputProps> = ({
   const options = filteredHours.map((hour) => (
     <option key={hour} value={formatHour(hour)} />
   ));
+  console.log(onChangeHour);
 
   return (
     <div>
@@ -38,7 +41,7 @@ export const NoteInputs: FC<NotesInputProps> = ({
         type="time"
         className={style.timeInput}
         list="timeList"
-        value={formatHour(hour ?? 8)}
+        value={formatHour(hour ?? 0)}
         onChange={onChangeHour}
       ></input>
       <datalist id="timeList">{options}</datalist>
